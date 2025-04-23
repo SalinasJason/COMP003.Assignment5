@@ -1,4 +1,8 @@
-
+﻿
+// Author: Jason Salinas
+// Course: COMP‑003B
+// Faculty Name: Jonathan Cruz
+// Purpose: Demonstrate CRUD operations via ASP.NET Core Web API
 namespace COMP003.Assignment5
 {
     public class Program
