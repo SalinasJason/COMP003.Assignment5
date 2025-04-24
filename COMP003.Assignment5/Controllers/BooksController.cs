@@ -6,7 +6,7 @@ namespace COMP003.Assignment5.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BooksController : Controller
+    public class BooksController : ControllerBase
     {
         [HttpGet]
         public ActionResult<List<Book>> GetBooks()
