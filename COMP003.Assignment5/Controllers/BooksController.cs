@@ -26,6 +26,31 @@ namespace COMP003.Assignment5.Controllers
 
             return Ok(book);
         }
+
+        [HttpPost]
+        public ActionResult<Book> CreateBook(Book book)
+        {
+            book.Id = BookStore.Books.Max(p => p.Id) + 1;
+
+            BookStore.Books.Add(book);
+
+            return CreatedAtAction(nameof(GetBook), new { id = book.Id }, book);
+        }
+
+        [HttpPut] 
+        public IActionResult UpdateBook(int id, Book updatedBook)
+        {
+            var existingBook = BookStore.Books.FirstOrDefault(p =>p.Id == id);
+
+            if (existingBook == null)
+                return NotFound();
+
+            existingBook.Title = updatedBook.Title;
+            existingBook.Author = updatedBook.Author;
+            existingBook.Price = updatedBook.Price;
+
+            return NoContent();
+        } 
     }
 }
 
