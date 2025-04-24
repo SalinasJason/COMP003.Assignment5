@@ -37,7 +37,7 @@ namespace COMP003.Assignment5.Controllers
             return CreatedAtAction(nameof(GetBook), new { id = book.Id }, book);
         }
 
-        [HttpPut] 
+        [HttpPut("{id}")] 
         public IActionResult UpdateBook(int id, Book updatedBook)
         {
             var existingBook = BookStore.Books.FirstOrDefault(p =>p.Id == id);
@@ -51,6 +51,19 @@ namespace COMP003.Assignment5.Controllers
 
             return NoContent();
         } 
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBook(int id)
+        {
+            var book = BookStore.Books.FirstOrDefault(p => p.Id == id);
+
+            if (book == null)
+                return NotFound();
+
+            BookStore.Books.Remove(book);
+
+            return NoContent();
+        }
     }
 }
 
